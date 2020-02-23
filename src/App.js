@@ -1,6 +1,11 @@
+// => imports
 import React from 'react'
 import StripeCheckout from 'react-stripe-checkout';
 
+// => require dotenv
+require('dotenv').config()
+
+// => app component
 export default function App() {
 
     const onToken = (token) => {
@@ -20,7 +25,7 @@ export default function App() {
             <h1>Stripe Example Project</h1>
             <StripeCheckout
                 token={onToken}
-                stripeKey=''
+                stripeKey={process.env.STRIPE_KEY}
             />
         </div>
     )
