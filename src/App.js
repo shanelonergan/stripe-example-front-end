@@ -38,7 +38,14 @@ export default function App() {
     return (
         <div>
             <h1>Stripe Example Project</h1>
-
+            <form>
+                <label>Price:</label>
+                <input
+                    type="number"
+                    value={ price }
+                    onChange={ handlePrice }
+                />
+            </form>
             <StripeCheckout
                 token={onToken}
                 stripeKey={process.env.REACT_APP_STRIPE_KEY}
