@@ -2,20 +2,27 @@
 import React from 'react'
 import StripeCheckout from 'react-stripe-checkout';
 
-// => require dotenv
-// require('dotenv').config({ path: 'stripe-example-front-end/.env'})
+const BASE_URL = 'http://localhost3000'
+const CHARGES_URL = BASE_URL + '/charges'
 
 // => app component
 export default function App() {
 
-    const onToken = (token) => {
+    const onToken = (token, price) => {
+
+        const charge = {
+            token: token.id
+        };
 
         const config = {
             method: 'POST',
-            body: JSON.stringify(token),
-        }
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ charge: charge, price: price })
+        };
 
-        fetch('http://localhost3000/charges', config)
+        fetch(CHARGES_URL, config)
         .then(res => res.json())
         .then(console.log)
     }
