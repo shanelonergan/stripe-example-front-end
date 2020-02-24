@@ -1,5 +1,5 @@
 // => imports
-import React from 'react'
+import React, { useState } from 'react'
 import StripeCheckout from 'react-stripe-checkout';
 
 const BASE_URL = 'http://localhost:3000'
@@ -7,6 +7,14 @@ const CHARGES_URL = BASE_URL + '/charges'
 
 // => app component
 export default function App() {
+
+    const [price, setPrice] = useState(100)
+
+    const handlePrice = () => {
+        setPrice({
+            [event.target.name]: event.target.value
+        })
+    }
 
     const onToken = (token, price) => {
 
@@ -30,6 +38,7 @@ export default function App() {
     return (
         <div>
             <h1>Stripe Example Project</h1>
+
             <StripeCheckout
                 token={onToken}
                 stripeKey={process.env.REACT_APP_STRIPE_KEY}
