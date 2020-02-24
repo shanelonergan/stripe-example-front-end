@@ -2,7 +2,7 @@
 import React from 'react'
 import StripeCheckout from 'react-stripe-checkout';
 
-const BASE_URL = 'http://localhost3000'
+const BASE_URL = 'http://localhost:3000'
 const CHARGES_URL = BASE_URL + '/charges'
 
 // => app component
